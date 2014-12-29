@@ -24,15 +24,46 @@ class Advices extends CI_Controller {
 	}
 
 	public function index()
-	{	
+	{		
+
 		$id_expert_session = $this->session->userdata('id_expert');
 
 		$data['user_data'] = $this->get_user_data($id_expert_session);
-		$data['advices_data'] = $this ->get_advices_data($id_expert_session);
+		$data['advices_data'] = $this ->get_all_advices_data($id_expert_session);
 
 		$this->load->helper('url');
 		$this->load->view('header', $data);
-		$this->load->view('index');
+		$this->load->view('advices');
+		$this->load->view('footer');
+	}
+
+	public function advice($id_advice){
+		$id_expert_session = $this->session->userdata('id_expert');
+
+		$data['id_advice'] = $id_advice;
+
+		$data['user_data'] = $this->get_user_data($id_expert_session);
+		
+		$data['advices_data'] = $this ->get_advices_data($id_expert_session);
+		$data['advice_data'] = $this->get_specific_advice_data($data['id_advice'], $id_expert_session);
+
+
+		$this->load->helper('url');
+		$this->load->view('header', $data);
+		$this->load->view('modify-advice');
+		$this->load->view('footer');
+	}
+
+	public function newadvice(){
+		$id_expert_session = $this->session->userdata('id_expert');
+
+
+		$data['user_data'] = $this->get_user_data($id_expert_session);
+
+
+		$this->load->helper('url');
+		$this->load->view('header', $data);
+		$this->load->view('new-advice');
 		$this->load->view('footer');
 	}
 
@@ -45,6 +76,18 @@ class Advices extends CI_Controller {
 	private function get_advices_data($id){
 		$this->load->model('main_model');
 		$result = $this->main_model->get_advices($id);
+		return $result;
+	}
+
+	private function get_all_advices_data($id){
+		$this->load->model('main_model');
+		$result = $this->main_model->get_all_advices($id);
+		return $result;
+	}
+
+	private function get_specific_advice_data($id_advice, $id_user){
+		$this->load->model('main_model');
+		$result = $this->main_model->get_advice($id_advice, $id_user);
 		return $result;
 	}
 

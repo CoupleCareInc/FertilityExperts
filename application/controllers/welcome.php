@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{	
-		$this->session->set_userdata('id_expert','2');
+		$this->session->set_userdata('id_expert','1');
 		$id_expert_session = $this->session->userdata('id_expert');
 
 		$data['user_data'] = $this->get_user_data($id_expert_session);

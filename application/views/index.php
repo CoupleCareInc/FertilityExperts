@@ -42,6 +42,7 @@
 		</nav>
 		<footer>
 			<h6>Support:<br> alfredo@couplecare.us</h6>
+			<h5><a href="#">Log out</a></h5>	
 		</footer>
 	</section>
 
@@ -87,8 +88,8 @@
 											 ?>
 										</tbody>
 									</table>
-									<a href="#" class="button special small fit icon fa-plus-circle">New advice</a>
-									<a href="#" class="button small fit icon fa-ellipsis-h">More advices</a>
+									<a href="<?php echo base_url(); ?>index.php/advices/newadvice" class="button special small fit icon fa-plus-circle">New advice</a>
+									<a href="<?php echo base_url(); ?>index.php/advices" class="button small fit icon fa-ellipsis-h">More advices</a>
 								</div>
 							</div>
 						</section>
