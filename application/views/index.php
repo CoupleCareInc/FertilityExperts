@@ -82,7 +82,7 @@
 												foreach ($advices_data as $row) {
 													echo '<tr>
 														<td>'.$row->advice.'</td>
-														<td><a href="#" class="button small fit icon fa-pencil-square-o">Edit</a></td>
+														<td><a href="'.base_url().'index.php/advices/advice/'.$row->id_advice.'" class="button small fit icon fa-pencil-square-o">Edit</a></td>
 													</tr>';
 												}
 											 ?>

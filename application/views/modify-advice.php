@@ -51,15 +51,15 @@
 				<header class="major">
 					<h3>Modify advice</h3>
 				</header>
-				<form method="post" action="#">
+				<?php echo form_open('advices/action'); ?>
 					<div class="row uniform">
-						<div class="12u"><textarea name="message" id="message" rows="5"><?= $advice_advice; ?></textarea></div>
+						<div class="12u"><textarea name="advice" id="message" rows="5"><?= $advice_advice; ?></textarea></div>
 					</div>
 					<div class="row uniform">
 						<div class="12u">
 						<label>Status day:</label>
 							<div class="select-wrapper">
-								<select name="demo-category" id="demo-category">
+								<select name="status_day" id="demo-category">
 									<option value=""><?= $advice_status_day;  ?></option>
 									<option value="General">General</option>
 									<option value="Period day">Period day</option>
@@ -75,11 +75,11 @@
 						<div class="12u">
 						<label>Gender:</label>
 							<div class="select-wrapper">
-								<select name="demo-category" id="demo-category">
+								<select name="gender" id="demo-category">
 									<option value="<?= $advice_gender;  ?>"><?= $advice_gender;  ?></option>
-									<option value="General">Female</option>
-									<option value="Period day">Male</option>
-									<option value="Fertile day">Both</option>
+									<option value="Female">Female</option>
+									<option value="Male">Male</option>
+									<option value="Both">Both</option>
 								</select>
 							</div>
 						</div>
@@ -88,23 +88,41 @@
 
 					<div class="row uniform">
 						<div class="4u 12u(2)">
-							<input type="radio" id="demo-priority-low" name="ttc" value="ttc" checked>
+							<?php 
+								if ($advice_ttc == 'ttc') {
+									echo '<input type="radio" id="demo-priority-low" name="ttc" value="ttc" checked>';		
+								}
+								else{
+									echo '<input type="radio" id="demo-priority-low" name="ttc" value="ttc">';
+								}
+							 ?>
+							
 							<label for="demo-priority-low">Trying to conceive</label>
+							
 						</div>
 						<div class="4u 12u(2)">
-							<input type="radio" id="demo-priority-normal" name="ttc" value="jkt">
+						<?php 
+							if ($advice_ttc == 'jkt') {
+								echo '<input type="radio" id="demo-priority-normal" name="ttc" value="jkt" checked>';		
+							}
+							else{
+								echo '<input type="radio" id="demo-priority-normal" name="ttc" value="jkt">';
+							}
+						 ?>
 							<label for="demo-priority-normal">Just keeping track</label>
 						</div>
 					</div>
-
+					<input type="hidden" value="<?= $advice_id; ?>" name="id_advice">
+					<input type="hidden" value="update" name="action">
 					<div class="row uniform">
 						<div class="12u">
 							<ul class="actions">
 								<li><input type="submit" class="special" value="Modify" /></li>
 							</ul>
+
 						</div>
 					</div>
-				</form>
+				<?php echo form_close(); ?>
 			</div>
 		</section>
 					

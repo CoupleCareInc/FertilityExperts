@@ -21,6 +21,8 @@ class Advices extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->library('session');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -54,12 +56,53 @@ class Advices extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function action(){
+		$id_expert_session = $this->session->userdata('id_expert');
+
+
+		$data['user_data'] = $this->get_user_data($id_expert_session);
+		$data['id'] = $this->input->post('name');
+
+		if ($this->input->post('action') == 'insert') {
+			$datainsert = array(
+			'id_advice' => '',
+			'gender' => $this->input->post('gender'),
+			'status_day' => $this->input->post('status_day'),
+			'ttc' => $this->input->post('ttc'),
+			'advice' => $this->input->post('advice'),
+			'tbl_experts_id_expert' => $id_expert_session
+			);
+
+			$this->main_model->add_advice($datainsert);
+		}
+
+		if ($this->input->post('action') == 'update') {
+			$dataupdate = array(
+			'gender' => $this->input->post('gender'),
+			'status_day' => $this->input->post('status_day'),
+			'ttc' => $this->input->post('ttc'),
+			'advice' => $this->input->post('advice'),
+			);
+
+			$this->main_model->update_advice($dataupdate, $id_expert_session, $this->input->post('id_advice'));
+		}
+
+		$this->index();
+
+		
+		/*
+		$this->load->helper('url');
+		$this->load->view('header', $data);
+		$this->load->view('new-advice');
+		$this->load->view('footer');
+		*/
+	}
+
 	public function newadvice(){
 		$id_expert_session = $this->session->userdata('id_expert');
 
 
 		$data['user_data'] = $this->get_user_data($id_expert_session);
-
 
 		$this->load->helper('url');
 		$this->load->view('header', $data);
@@ -89,6 +132,10 @@ class Advices extends CI_Controller {
 		$this->load->model('main_model');
 		$result = $this->main_model->get_advice($id_advice, $id_user);
 		return $result;
+	}
+
+	public function insert(){
+
 	}
 
 

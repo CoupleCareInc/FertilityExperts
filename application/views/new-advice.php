@@ -44,15 +44,15 @@
 				<header class="major">
 					<h3>New advice</h3>
 				</header>
-				<form method="post" action="#">
+				<?php echo form_open('advices/action'); ?>
 					<div class="row uniform">
-						<div class="12u"><textarea name="message" id="message" placeholder="Advice here" rows="5"></textarea></div>
+						<div class="12u"><textarea name="advice" id="message" placeholder="Advice here" rows="5"></textarea></div>
 					</div>
 					<div class="row uniform">
 						<div class="12u">
 						<label>Status day:</label>
 							<div class="select-wrapper">
-								<select name="demo-category" id="demo-category">
+								<select name="status_day" id="demo-category">
 									<option value="General">General</option>
 									<option value="Period day">Period day</option>
 									<option value="Fertile day">Fertile day</option>
@@ -67,11 +67,12 @@
 						<div class="12u">
 						<label>Gender:</label>
 							<div class="select-wrapper">
-								<select name="demo-category" id="demo-category">
-									<option value="General">Female</option>
-									<option value="Period day">Male</option>
-									<option value="Fertile day">Both</option>
+								<select name="gender" id="demo-category">
+									<option value="Female">Female</option>
+									<option value="Male">Male</option>
+									<option value="Both">Both</option>
 								</select>
+								<input type="hidden" value="insert" name="action">
 							</div>
 						</div>
 					</div>
@@ -95,7 +96,7 @@
 							</ul>
 						</div>
 					</div>
-				</form>
+				<?php echo form_close(); ?>
 			</div>
 		</section>
 					

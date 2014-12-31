@@ -25,6 +25,7 @@ class main_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('tbl_advices');
 		$this->db->where('tbl_experts_id_expert', $id);
+		$this->db->order_by("id_advice", "desc");
 		$this->db->limit(4);
 
 		$query = $this->db->get();
@@ -35,6 +36,7 @@ class main_model extends CI_Model{
 	public function get_all_advices($id){
 		$this->db->select('*');
 		$this->db->from('tbl_advices');
+		$this->db->order_by("id_advice", "desc");
 		$this->db->where('tbl_experts_id_expert', $id);
 
 		$query = $this->db->get();
@@ -62,6 +64,19 @@ class main_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function add_advice($data){
+		$this->db->insert('tbl_advices', $data);
+		return;
+	}
+
+	public function update_advice($data, $id_user, $id_advice){
+		$this->db->where('tbl_experts_id_expert', $id_user);
+		$this->db->where('id_advice', $id_advice);
+		$this->db->update('tbl_advices', $data); 
+	}
+
+	
 }
 
 ?>
