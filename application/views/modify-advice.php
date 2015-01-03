@@ -38,7 +38,7 @@
 			
 			<h6>Support:<br> alfredo@couplecare.us</h6>	
 			
-			<h5><a href="#">Log out</a></h5>	
+			<h5><a href="<?php echo base_url(); ?>index.php/welcome/logout">Log out</a></h5>	
 			
 			
 		</footer>
@@ -60,7 +60,7 @@
 						<label>Status day:</label>
 							<div class="select-wrapper">
 								<select name="status_day" id="demo-category">
-									<option value=""><?= $advice_status_day;  ?></option>
+									<option value="<?= $advice_status_day;  ?>"><?= $advice_status_day;  ?></option>
 									<option value="General">General</option>
 									<option value="Period day">Period day</option>
 									<option value="Fertile day">Fertile day</option>

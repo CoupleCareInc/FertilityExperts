@@ -42,7 +42,7 @@
 		</nav>
 		<footer>
 			<h6>Support:<br> alfredo@couplecare.us</h6>
-			<h5><a href="#">Log out</a></h5>	
+			<h5><a href="<?php echo base_url(); ?>index.php/welcome/logout">Log out</a></h5>	
 		</footer>
 	</section>
 
@@ -147,8 +147,8 @@
 										</div>
 									</article>
 									-->
-									<a href="#" class="button special small fit icon fa-plus-circle">New post</a>
-									<a href="#" class="button small fit icon fa-ellipsis-h">More posts</a>
+									<a href="<?php echo base_url(); ?>index.php/articles/newarticle" class="button special small fit icon fa-plus-circle">New post</a>
+									<a href="<?php echo base_url(); ?>index.php/articles" class="button small fit icon fa-ellipsis-h">More posts</a>
 								</div>
 							</div>
 						</section>

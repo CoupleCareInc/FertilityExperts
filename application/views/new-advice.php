@@ -31,7 +31,7 @@
 			
 			<h6>Support:<br> alfredo@couplecare.us</h6>	
 			
-			<h5><a href="#">Log out</a></h5>	
+			<h5><a href="<?php echo base_url(); ?>index.php/welcome/logout">Log out</a></h5>	
 			
 			
 		</footer>

@@ -6,6 +6,20 @@
 		$dr_city = $row->city;
 		$dr_country = $row->country;
 	}
+	function ArticleStatus($status, $id){
+		if ($status == 'ready to post') {
+			return '<h5><font color="#27d6e1">Ready to post</font></h5>
+			<a href="'.base_url().'index.php/articles/article/'.$id.'" class="button small fit icon fa-pencil-square-o">Edit</a>';
+		}
+		if ($status == 'posted') {
+			return '<h5><font color="#55da75">Posted</font></h5>';
+		}
+		if ($status == 'draft') {
+			return '<h5><font color="#dac955">Draft</font></h5>
+			<a href="'.base_url().'index.php/articles/article/'.$id.'" class="button small fit icon fa-pencil-square-o">Edit</a>';
+		}
+		return '';
+	}
 
 
 ?>
@@ -22,8 +36,8 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="<?php echo base_url(); ?>">Home</a></li>
-				<li><a href="#one" class="active">Advices</a></li>
-				<li><a href="<?php echo base_url(); ?>index.php/articles">Articles</a></li>
+				<li><a href="<?php echo base_url(); ?>index.php/advices">Advices</a></li>
+				<li><a href="#" class="active">Articles</a></li>
 				<!-- <li><a href="#four">Q&A</a></li> -->
 			</ul>
 		</nav>
@@ -38,23 +52,30 @@
 		<section id="one">
 			<div class="container">
 				<header class="major">
-					<h3>Advices</h3>
+					<h3>Articles</h3>
 				</header>
 				<div class="table-wrapper">
 					<table class="alt">
 						<tbody>
-						<a href="<?php echo base_url(); ?>index.php/advices/newadvice" class="button special small fit icon fa-plus-circle">New advice</a>
+						<a href="<?php echo base_url(); ?>index.php/articles/newarticle" class="button special small fit icon fa-plus-circle">New post</a>
+						<div class="features">
 						<?php 
-							if ($advices_data == null) {
-								echo '<font color="#da5555">You have not shared any advice to the users of Couple Care</font>';
+							if ($articles_data == null) {
+								echo '<font color="#da5555">You have not shared any article in the blog of Couple Care</font>';
 							}
-							foreach ($advices_data as $row) {
-								echo '<tr>
-										<td>'.$row->advice.'</td>
-										<td><a href="'.base_url().'index.php/advices/advice/'.$row->id_advice.'" class="button small fit icon fa-pencil-square-o">Edit</a></td>
-										</tr>';
+							foreach ($articles_data as $row) {
+								echo '<article>
+										<b>'.$row->datecreated.'</b><br>
+										<a href="#" class="image"><img src="'.base_url().'assets/images/pic01.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>'.$row->title.'</h4>
+											<p>'.$row->subtitle.'</p>
+											'.ArticleStatus($row->status, $row->id_article).'
+										</div>
+									  </article>';
 							}
 						?>
+						</div>
 						</tbody>
 					</table>
 				</div>
